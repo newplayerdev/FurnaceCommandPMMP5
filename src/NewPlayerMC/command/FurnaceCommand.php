@@ -35,7 +35,7 @@ class FurnaceCommand extends \pocketmine\command\Command
             $sender->sendMessage(str_replace("{cooldown}", ($cooldown - $time), Main::getInstance()->getConfig()->get("cooldown-message")));
         } else {
             $this->cooldowns[$sender->getName()] = time();
-            if (isset($args[0])) {
+            if (isset($args[0]) and $args[0] === "all") {
                 foreach ($sender->getInventory()->getContents() as $slot => $item) {
                     if ($furnacemanager->match($item) !== null) {
                         $sender->getInventory()->setItem($slot, $furnacemanager->match($item)->getResult()->setCount($item->getCount()));
