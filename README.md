@@ -1,6 +1,14 @@
 # FurnaceCommandPMMP4
 
-Usage: /furnace [all]
+**Usage**
+
+/furnace [all]
+
+**Permissions**
+
+`furnace.use` -> `/furnace`
+
+`furnace.all` -> `/furnace all`
 
 **Config**
 
@@ -9,7 +17,7 @@ Usage: /furnace [all]
 ```yml
 ---
 # command description
-command-description: ""
+command_description: ""
 
 # message when player doesn't have the permission to use the command
 permission_message: "You don't have the permission to use this command !"
@@ -24,7 +32,7 @@ item_not_furnacable: "You cannot furnace this item"
 cooldown: 10
 
 # Cooldown message
-cooldown-message: "§cYou are currently in cooldown, please wait {cooldown} seconds"
+cooldown_message: "§cYou are currently in cooldown, please wait {cooldown} seconds"
 
 ...
 ```
