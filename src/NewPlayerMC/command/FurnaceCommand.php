@@ -23,9 +23,18 @@ class FurnaceCommand extends \pocketmine\command\Command
 
     public function execute(CommandSender $sender, string $commandLabel, array $args)
     {
-        if (!$sender instanceof Player) return $sender->sendMessage("§cNo console allowed");
-        if (!$this->testPermission($sender)) return $sender->sendMessage($this->getPermissionMessage());
-        if (count($args) > 1) return $sender->sendMessage("§c/" . $this->getUsage());
+        if (!$sender instanceof Player) {
+            $sender->sendMessage("§cNo console allowed");
+            return;
+        }
+        if (!$this->testPermission($sender)) {
+            $sender->sendMessage($this->getPermissionMessage());
+            return;
+        }
+        if (count($args) > 1) {
+            $sender->sendMessage("§c/" . $this->getUsage());
+            return;
+        }
 
         $cooldown = Main::getInstance()->getConfig()->get("cooldown");
         $furnacemanager = Server::getInstance()->getCraftingManager()->getFurnaceRecipeManager(FurnaceType::FURNACE());
