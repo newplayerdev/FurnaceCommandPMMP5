@@ -8,3 +8,6 @@ permissions:
   furnace.use:
     default: op
     description: Allow to /furnace
+  furnace.all:
+    default: op
+    description: Allow to /furnace all

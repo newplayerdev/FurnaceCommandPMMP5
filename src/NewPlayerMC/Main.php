@@ -2,6 +2,7 @@
 
 namespace NewPlayerMC;
 
+use CortexPE\Commando\PacketHooker;
 use NewPlayerMC\command\FurnaceCommand;
 
 class Main extends \pocketmine\plugin\PluginBase
@@ -15,6 +16,10 @@ class Main extends \pocketmine\plugin\PluginBase
         $this->saveDefaultConfig();
 
         $this->getServer()->getCommandMap()->register("furnace", new FurnaceCommand());
+
+        if (!PacketHooker::isRegistered()) {
+            PacketHooker::register($this);
+        }
     }
 
     /**
