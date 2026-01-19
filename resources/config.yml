@@ -1,4 +1,3 @@
----
 # command description
 command_description: "Melt your items"
 
@@ -9,12 +8,10 @@ permission_message: "You don't have the permission to use this command !"
 furnace_message: "Your item has been furnaced"
 furnace_all_message: "All your items have been furnaced"
 
-item_not_furnacable: "You cannot furnace this item"
+item_not_furnacable: "You can't furnace this item"
 
 # Cooldown in seconds
 cooldown: 10
 
 # Cooldown message
 cooldown_message: "§cYou are currently in cooldown, please wait {cooldown} seconds"
-
-...

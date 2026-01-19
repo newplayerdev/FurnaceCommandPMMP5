@@ -3,9 +3,11 @@
 namespace NewPlayerMC\command\sub;
 
 use CortexPE\Commando\BaseSubCommand;
-use NewPlayerMC\Main;
+use CortexPE\Commando\constraint\InGameRequiredConstraint;
+use FurnaceCommandPMMP5\src\Loader;
 use pocketmine\command\CommandSender;
 use pocketmine\crafting\FurnaceType;
+use pocketmine\player\Player;
 use pocketmine\Server;
 
 class FurnaceAllSubCommand extends BaseSubCommand
@@ -14,7 +16,8 @@ class FurnaceAllSubCommand extends BaseSubCommand
 
     public function __construct()
     {
-        parent::__construct(Main::getInstance(), "all");
+        parent::__construct("all", "all");
+        $this->addConstraint(new InGameRequiredConstraint($this));
     }
 
     /**
@@ -23,20 +26,21 @@ class FurnaceAllSubCommand extends BaseSubCommand
     protected function prepare(): void
     {
         $this->setPermission("furnace.all");
-        $this->setPermissionMessage(Main::getInstance()->getConfig()->get("permission_message"));
     }
 
     /**
      * @inheritDoc
+     * @var Player $sender
      */
     public function onRun(CommandSender $sender, string $aliasUsed, array $args): void
     {
-        $cooldown = Main::getInstance()->getConfig()->get("cooldown");
+        $config = Loader::getInstance()->getConfig();
+        $cooldown = $config->get("cooldown");
         $furnacemanager = Server::getInstance()->getCraftingManager()->getFurnaceRecipeManager(FurnaceType::FURNACE());
 
         if (isset($this->cooldowns[$sender->getName()]) and time() - $this->cooldowns[$sender->getName()] < $cooldown) {
             $time = time() - $this->cooldowns[$sender->getName()];
-            $sender->sendMessage(str_replace("{cooldown}", ($cooldown - $time), Main::getInstance()->getConfig()->get("cooldown_message")));
+            $sender->sendMessage(str_replace("{cooldown}", ($cooldown - $time), $config->get("cooldown_message")));
         } else {
             $this->cooldowns[$sender->getName()] = time();
             foreach ($sender->getInventory()->getContents() as $slot => $item) {
@@ -44,7 +48,7 @@ class FurnaceAllSubCommand extends BaseSubCommand
                     $sender->getInventory()->setItem($slot, $furnacemanager->match($item)->getResult()->setCount($item->getCount()));
                 }
             }
-            $sender->sendMessage(Main::getInstance()->getConfig()->get("furnace_all_message"));
+            $sender->sendMessage($config->get("furnace_all_message"));
         }
     }
 }
