@@ -1,5 +1,8 @@
 # FurnaceCommandPMMP4
 
+**Installation**
+Donwload Commando virion (https://poggit.pmmp.io/ci/CortexPE/Commando/~) and put it inside your `/virions` folder on your server
+
 **Usage**
 
 /furnace [all]
