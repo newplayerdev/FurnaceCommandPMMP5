@@ -4,7 +4,7 @@ namespace NewPlayerMC\command\sub;
 
 use CortexPE\Commando\BaseSubCommand;
 use CortexPE\Commando\constraint\InGameRequiredConstraint;
-use FurnaceCommandPMMP5\src\Loader;
+use NewPlayerMC\Loader;
 use pocketmine\command\CommandSender;
 use pocketmine\crafting\FurnaceType;
 use pocketmine\player\Player;

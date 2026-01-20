@@ -1,6 +1,6 @@
 <?php
 
-namespace FurnaceCommandPMMP5\src;
+namespace NewPlayerMC;
 
 use CortexPE\Commando\PacketHooker;
 use NewPlayerMC\command\FurnaceCommand;
